@@ -117,6 +117,6 @@ app.use((err, req, res, next) => {
 	next();
 });
 
-app.listen(port, host, () => {
-	console.log(`server start on http//:${host}:${port} `);
+app.listen(port, () => {
+	console.log(`server start on ${port} `);
 });
