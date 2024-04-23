@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
-const { host, port, BASE_URI } = require("./config/serverConfig");
+const { host, port, BASE_URI } = require("./src/config/serverConfig");
+
 const TelegramBot = require("node-telegram-bot-api");
 const puppeteer = require("puppeteer");
-const { logger } = require("../logger");
-const { splitLongRead } = require("./utils/utils");
+const { logger } = require("./logger");
+const { splitLongRead } = require("./src/utils/utils");
+const dotenv = require("dotenv").config();
 // const context = require("request-context");
 // const { v4: generateUUID } = require("uuid");
 
@@ -40,8 +42,8 @@ try {
 
 		// Start Puppeteer
 		const browser = await puppeteer.launch({
-			// headless: false,
-			// defaultViewport: { width: 1200, height: 1024 },
+			headless: false,
+			defaultViewport: { width: 1200, height: 1024 },
 		});
 
 		const page = await browser.newPage();
