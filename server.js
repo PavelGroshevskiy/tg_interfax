@@ -5,10 +5,8 @@ const { host, port, BASE_URI } = require("./src/config/serverConfig");
 const TelegramBot = require("node-telegram-bot-api");
 const puppeteer = require("puppeteer");
 const { logger } = require("./logger");
-const { splitLongRead } = require("./src/utils/utils");
+const { splitLongRead, serialize } = require("./src/utils/utils");
 const dotenv = require("dotenv").config();
-// const context = require("request-context");
-// const { v4: generateUUID } = require("uuid");
 
 app.use(express.json());
 
@@ -33,7 +31,7 @@ try {
 		},
 	});
 
-	logger.info("Start bot", bot);
+	logger.info("Start bot", serialize(bot));
 
 	bot.on("message", async (msg) => {
 		await bot.sendMessage(msg.chat.id, "coming soon", {});
@@ -118,5 +116,6 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
+	logger("Server start on port: ", port);
 	console.log(`server start on ${port} `);
 });
