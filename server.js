@@ -5,8 +5,6 @@ const { host, port, BASE_URI } = require("./src/config/serverConfig");
 const TelegramBot = require("node-telegram-bot-api");
 const puppeteer = require("puppeteer");
 const { logger } = require("./logger");
-const { splitLongRead, serialize } = require("./src/utils/utils");
-const dotenv = require("dotenv").config();
 
 app.use(express.json());
 
